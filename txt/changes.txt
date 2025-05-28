@@ -1,0 +1,170 @@
+i changed the config.php, testing if the admin works
+heres backup of config
+
+<?php
+error_reporting(1);
+session_start();
+
+$conn = mysqli_connect('localhost', 'root', '', 'mixednuts');
+
+// Login Logic
+if (isset($_POST['loginBtn'])) {
+        $username =  $conn->real_escape_string($_POST['username']);
+        $password =  $conn->real_escape_string($_POST['password']);
+        $sql = "SELECT * FROM login WHERE username='$username' AND password='$password'";
+		$result = mysqli_query($conn, $sql);
+
+        if (mysqli_num_rows($result) === 1) {
+		$row = mysqli_fetch_assoc($result);
+        $_SESSION['username'] = $row['username'];
+        $_SESSION['id'] = $row['id'];
+        echo "";
+        } else {
+            echo "<p>Invalid username or password</p>";
+        }
+}
+
+// Signup Logic
+if (isset($_POST['signupBtn'])) {
+    $username = $conn->real_escape_string($_POST['username']);
+    $password = $conn->real_escape_string($_POST['password']);
+    $firstname = $conn->real_escape_string($_POST['firstname']);
+    $lastname = $conn->real_escape_string($_POST['lastname']);
+
+    // Check if username already exists
+    $check_query = $conn->prepare("SELECT id FROM login WHERE username = ?");
+    $check_query->bind_param('s', $username);
+    $check_query->execute();
+    $check_query->store_result();
+
+    if ($check_query->num_rows == 0) {
+        // Insert into login table using prepared statement
+        $stmt = $conn->prepare("INSERT INTO login (username, password) VALUES (?, ?)");
+        $stmt->bind_param('ss', $username, $password);
+        if ($stmt->execute()) {
+            // Get the login_id
+            $login_id = $conn->insert_id;
+
+            // Insert into profile table using prepared statement
+            $addrow = "INSERT INTO profile (login_id, firstname, lastname) VALUES (?, ?, ?)";
+            $stmt = $conn->prepare($addrow);
+            $stmt->bind_param('iss', $login_id, $firstname, $lastname);
+            if ($stmt->execute()) {
+                echo json_encode(['success' => 'Profile saved successfully']);
+            } else {
+                echo json_encode(['error' => 'Error saving profile']);
+            }
+
+            $stmt->close();
+        } else {
+            echo json_encode(['error' => 'Error creating account']);
+        }
+    } else {
+        echo json_encode(['error' => 'Account already exists']);
+    }
+
+    $check_query->close();
+}
+
+
+if(isset($_POST['save_button'])){
+    $firstname =  $conn->real_escape_string($_POST['firstname']);
+    $lastname = $conn->real_escape_string($_POST['lastname']);
+    $bio = $conn->real_escape_string($_POST['bio']);
+    $query="UPDATE profile SET firstname = '$firstname', lastname = '$lastname', bio = '$bio' WHERE login_id='$login_id'";
+    mysqli_query($conn, $query);
+    echo "profile saved";
+}
+
+?>
+
+heres main.js backup
+
+//---------- LOGIN AREA ----------//
+
+function login(){
+    let invalid = "<p>Please fill up everything</p>";
+    let username = document.getElementById('username');
+    let password = document.getElementById('password');
+    let loginbutton = document.getElementById('loginBtn');
+    let formdata = new FormData();
+    formdata.append("username", username.value);
+    formdata.append("password", password.value);
+    formdata.append("loginBtn", loginbutton.value);
+    if(username.value == "" || password.value == ""){
+        document.getElementById('log-message').innerHTML = invalid;
+    } else {
+        fetch('config.php', {
+            method: 'POST',
+            body: formdata
+        })
+        .then(Response => Response.text())
+        .then(data => {
+            if (data) {
+                document.getElementById('log-message').innerHTML = data;
+            } else {
+                window.location.href = 'home.php';
+            }   
+        })
+        .catch(error => alert("Error: " + error.message));
+        return false;
+    }
+}
+
+//-- LOGIN AREA --//
+
+function signup(){
+    let invalid = "<p>Please fill up everything</p>"
+    let username = document.getElementById('username_su');
+    let password = document.getElementById('password_su');
+    let firstname = document.getElementById('firstname');
+    let lastname = document.getElementById('lastname');
+    let signupbutton = document.getElementById('signupBtn');
+    let formdata = new FormData();
+    formdata.append("username", username.value);
+    formdata.append("password", password.value);
+    formdata.append("firstname", firstname.value);
+    formdata.append("lastname", lastname.value);
+    formdata.append("signupBtn", signupbutton.value);
+
+    if(username.value == "" || password.value == "" || firstname.value == "" || lastname.value == ""){
+        document.getElementById('message').innerHTML = invalid;
+    } else {
+        fetch('config.php', {
+            method: 'POST',
+            body: formdata
+        })
+        .then(Response => Response.text())
+        .then(data => {
+            if(data.error){
+                document.getElementById('log-message').innerHTML = data;
+            } else {
+                window.location.href = 'index.php';
+            }
+
+        })
+        .catch(error => alert("Error: " + error.message));
+        return false;
+    }
+}
+
+
+
+
+/* Keep this for now 
+its a code for the Login Page that has Animation when switching
+const loginsec=document.querySelector('.login-section')
+const loginlink=document.querySelector('.login-link')
+const registerlink=document.querySelector('.register-link')
+registerlink.addEventListener('click',()=>{
+    loginsec.classList.add('active')
+})
+loginlink.addEventListener('click',()=>{
+    loginsec.classList.remove('active')
+})
+*/
+
+
+
+
+

@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;1,500&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "poppins",sans-serif;
+} /*Spaces Boxes*/
+body{
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    text-align: center;
+}/*Centers Texts*/
+.background{
+    background: url(../uploads/background5.png) no-repeat;
+    background-position: center;
+    background-size:cover ;
+    height: 100vh;
+    width: 100%;
+    filter: blur(5px);
+}/*Background design*/
+
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 25px 13%;
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}/*Header Design*/
+.navbar a{
+    position: relative;
+    font-size: 16px;
+    color: #ffffff;
+    margin-right: 30px;
+    text-decoration: none;
+}/*NavBar Design*/
+.navbar a::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    bottom: -5px;
+    border-radius: 5px;
+    transform: translateY(10px);
+    opacity: 0;
+    transition: .5s ease;
+}/*Hover Effects A*/
+.navbar a:hover:after{
+    transform: translateY(0);
+    opacity: 1;
+}/*Hover Effects UnderLine*/
+.container{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 75%;
+    height: 550px;
+    background-size:cover ;
+    border-radius: 25px;
+    overflow: hidden;
+    padding: 20px;
+    border-radius: 50px;
+    max-width: 800px;
+    margin: 50px auto;
+}/*Container Location Design*/
+
+.btn{
+    background: #fff;
+    width: 100%;
+    height: 45px;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background: #f72d7a;
+    font-size: 16px;
+    color: #fff;
+    box-shadow: rgba(0,0,0,0.4);
+}
+
+/*----------Additional Mierda----------*/
+/*About.php*/
+.faq {
+
+    margin-top: 20px;
+}
+.faq p {
+
+    margin-bottom: 15px;
+}
+li {
+    color: white;
+    font-size: 20px;
+}
+/*-------------------------------------------------------------------------*/
+/*contact.php*/
+h1 {
+    color: #ffffff;
+    text-align: center;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: left;
+}
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+button:hover {
+    background-color: #0056b3;
+}
+p {
+    color: #fff;
+    font-size: 20px;
+}
+label {
+    color: #fff;
+    font-size: 20px;
+}
+/*-------------------------------------------------------------------------*/
+/*portfolio.php*/
+.portfolio {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+.user {
+
+    padding: 50px;
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 30%;
+}
+.user img {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.user h2 {
+    font-size: 20px;
+    color: #ffffff;
+}
+.user p {
+    font-size: 14px;
+    color: #ffffff;
+}

@@ -1,0 +1,236 @@
+/* 🌅 Background & Layout */
+body {
+    min-height: 100vh;
+    width: 100%;
+    background: linear-gradient(to right, #e0eafc, #cfdef3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 💎 Container Polish */
+.container {
+    width: 100%;
+    max-width: 1140px;
+    margin: 40px auto;
+    padding: 40px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* 🧾 Table Modernization */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    font-size: 16px;
+}
+
+.table th, .table td {
+    padding: 14px 18px;
+    text-align: left;
+}
+
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid #dee2e6;
+}
+
+.thead-dark th {
+    background-color: #4CAF50;
+    color: white;
+    border-color: #4CAF50;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f2f2f2;
+}
+
+/* ✅ Buttons Reborn */
+.btn {
+    font-weight: 500;
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    opacity: 0.95;
+}
+
+.btn-primary {
+    background: #4CAF50;
+    color: white;
+    border: none;
+}
+
+.btn-warning {
+    background: #ffc107;
+    color: #333;
+    border: none;
+}
+
+.btn-danger {
+    background: #e53935;
+    color: white;
+    border: none;
+}
+
+.btn-sm {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+}
+
+/* 🧠 Utility Classes */
+.text-center {
+    text-align: center;
+}
+
+.mb-3 {
+    margin-bottom: 1rem;
+}
+
+.mt-5 {
+    margin-top: 3rem;
+}
+
+/* 🆕 Category Title */
+.category-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+
+/* 🌌 Modal Overlay */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.35);
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal.show {
+    display: flex;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ✨ Modal Card */
+.modal-content {
+    width: 100%;
+    max-width: 500px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    padding: 30px 40px;
+    position: relative;
+    animation: fadeInUp 0.3s ease-out;
+}
+
+
+
+/* 🧢 Modal Header */
+.modal-header {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.close-modal {
+    background: transparent;
+    border: none;
+    font-size: 28px;
+    color: #999;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+.close-modal:hover {
+    color: #333;
+}
+
+/* 📝 Form */
+.form-group label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    transition: border 0.2s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.15);
+}
+
+/* 🎯 Buttons */
+.modal-footer {
+    margin-top: 25px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.btn-submit {
+    background: #4CAF50;
+    border: none;
+    padding: 10px 18px;
+    font-weight: bold;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.btn-submit:hover {
+    background: #45a049;
+}
+
+.btn-cancel {
+    background: #f1f1f1;
+    color: #444;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.btn-cancel:hover {
+    background: #ddd;
+}
